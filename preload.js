@@ -1,0 +1,1 @@
+// Deliberately minimal preload. The renderer does not need Node.js access.

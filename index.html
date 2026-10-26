@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09070c">
+  <title>Rift Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="startup-splash" id="startup-splash" role="status" aria-label="Rift Runner loading">
+  <div class="splash-orbit orbit-one"></div>
+  <div class="splash-orbit orbit-two"></div>
+  <div class="splash-content">
+    <div class="splash-sigil">✦</div>
+    <p class="splash-kicker">A NEW REALITY AWAITS</p>
+    <h1 class="splash-title">RIFT <span>RUNNER</span></h1>
+    <p class="splash-subtitle">CROSS THE FRACTURE. DEFY THE COLLAPSE.</p>
+    <div class="splash-loader"><i></i></div>
+  </div>
+</div>
+<main class="app-shell">
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark">✦</div>
+      <div class="brand-title"><h1>RIFT <span>RUNNER</span></h1></div>
+    </div>
+    <div class="header-actions">
+      <div class="stat-card"><span>RUN SCORE</span><strong id="score">000</strong></div>
+      <div class="stat-card"><span>PERSONAL BEST</span><strong id="best">000</strong></div>
+      <button class="icon-button" id="sound-button" title="Toggle sound" aria-label="Toggle sound">♫</button>
+      <button class="icon-button" id="pause-button" title="Pause game" aria-label="Pause game">Ⅱ</button>
+    </div>
+  </header>
+
+  <section class="game-frame">
+    <div class="frame-topline"><span><i class="live-dot"></i><span id="status-label">REALITY STABLE</span></span></div>
+    <div class="arena-wrap">
+      <canvas id="game" width="1200" height="680" aria-label="Rift Runner gameplay area"></canvas>
+      <div class="overlay" id="overlay">
+        <div class="overlay-panel">
+          <div class="portal-icon">✧</div>
+          <p class="eyebrow" id="overlay-kicker">THE MULTIVERSE IS COLLAPSING</p>
+          <h2 id="overlay-title">Enter the <span>Rift</span></h2>
+          <p class="overlay-copy" id="overlay-text">One cloak. Infinite fractures. How long can you survive?</p>
+          <div class="menu-actions">
+            <button class="button button-primary" id="primary-button">BEGIN RUN <span>↗</span></button>
+            <button class="button button-quiet" id="secondary-button">HOW TO PLAY</button>
+            <button class="button button-quiet" id="tertiary-button">HIGH SCORES</button>
+            <button class="button button-quiet" id="settings-button">SETTINGS</button>
+          </div>
+          <section class="menu-score-history" id="menu-score-history" aria-label="Recent scores">
+            <div class="history-heading"><span>LAST 5 RUNS</span><span>HIGH SCORE <strong id="menu-high-score">000</strong></span></div>
+            <div class="recent-scores" id="recent-scores"><span class="recent-empty">Complete a run to record your score.</span></div>
+          </section>
+          <div class="quick-controls"><span><kbd>SPACE</kbd> THRUST</span><i></i><span><kbd>ESC</kbd> PAUSE</span><i></i><span><kbd>M</kbd> SOUND</span></div>
+        </div>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="pause-ribbon" id="pause-ribbon">TIMELINE PAUSED <span>·</span> PRESS ESC TO RESUME</div>
+      <div class="game-hud">
+        <div class="hud-chip"><span class="hud-dot"></span><span id="difficulty-label">RIFT INTENSITY: I</span></div>
+        <div class="power-meter"><span>TIME STONE</span><div class="meter-track"><i id="power-fill"></i></div><span id="power-time">READY</span></div>
+      </div>
+    </div>
+    <div class="frame-bottomline"><span id="run-tip">FLY THROUGH THE OPENING TO SCORE</span><span>© RIFT RUNNER</span></div>
+  </section>
+
+  <section class="below-grid">
+    <div class="info-card"><span class="info-icon">⌁</span><div><strong>DEFY GRAVITY</strong><p>Tap Space for a single beat of lift.</p></div></div>
+    <div class="info-card"><span class="info-icon">⟡</span><div><strong>THREAD THE RIFT</strong><p>Thread each shifting dimensional gap.</p></div></div>
+    <div class="info-card"><span class="info-icon">◈</span><div><strong>MASTER TIME</strong><p>Collect the Time Stone to slow time.</p></div></div>
+    <div class="info-card record-card"><span class="record-label">BEST RUN</span><strong id="best-summary">000</strong><span class="record-sub">YOUR LEGEND GROWS</span></div>
+  </section>
+  <footer><span>RIFT RUNNER</span><span>BUILT FOR THE BRAVE <i>✦</i></span></footer>
+</main>
+<script>
+  // Show the game title for two seconds on launch, then reveal the main menu.
+  window.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('startup-splash');
+    window.setTimeout(() => {
+      if (!splash) return;
+      splash.classList.add('splash-exit');
+      window.setTimeout(() => splash.remove(), 350);
+    }, 2000);
+  });
+</script>
+<script src="game.js"></script>
+</body>
+</html>
